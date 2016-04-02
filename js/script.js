@@ -21,7 +21,6 @@ function click(event){
 
     }
 
-
 }
 
 
@@ -29,12 +28,12 @@ function drawGrid(){
 
     ctx.beginPath();
 
-    for (var i = 40; i < canvasWidth; i+=40) {
+    for (var i = 40; i <= canvasWidth; i += 40) {
         ctx.moveTo(i, 0);
         ctx.lineTo(i, canvasHeight);
     }
 
-    for (var j = 40; j < canvasHeight; j+=40) {
+    for (var j = 40; j <= canvasHeight; j += 40) {
         ctx.moveTo(0, j);
         ctx.lineTo(canvasWidth, j);
     }
@@ -46,15 +45,17 @@ function drawGrid(){
 function paintRect(x, y){
 
     console.log(x * 40, y * 40);
-
-    ctx.fillRect(x*40,y*40, x+40, y+40);
+    ctx.beginPath();
+    ctx.fillRect(x*40,y*40, 40, 40);
+    //ctx.clearRect(x*40,y*40, x+40, y+40);
+    //ctx.clearRect(x*40,y*40, x+40, y+40);
 
 }
 
 function dividedCanvasOnGrid(){
 
-    for (var i = 0; i < canvasHeight; i+=40) { //height 600
-        for (var j = 0; j < canvasWidth; j+=40) {// width 800
+    for (var i = 0; i < canvasHeight; i += 40) { //height 600
+        for (var j = 0; j < canvasWidth; j += 40) {// width 800
             el = {};
             el.horiz = j;
             el.vert = i;
@@ -74,8 +75,31 @@ function detectPosition(x, y){
     paintRect(moduloX, moduloY);
     //alert(gridElem.length);
 }
-
-
-
 drawGrid();
 dividedCanvasOnGrid();
+
+/*modal
+http://www.w3schools.com/howto/howto_css_modals.asp
+*/
+var modal = document.getElementById('modal-periodictable');
+var showPerTable = document.getElementById("button-periodictable");
+
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+showPerTable.onclick = function() {
+    modal.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
+/*----------------------------------------------------------------*/
