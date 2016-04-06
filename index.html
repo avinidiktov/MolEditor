@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>MolEditor</title>
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/modal.css">
     </head>
     <body>
         <div class="container">
@@ -17,7 +18,7 @@
             </header>
             <div class="molpad">
                 <div class="canvas-content">
-                    <canvas id="canvas" width="800" height="600"></canvas>
+                    <canvas id="canvas" width="560" height="560"></canvas>
                 </div>
                 <div class="toolbar">
                     <div id="element-tools">
@@ -61,12 +62,87 @@
             </div>
             <div id="modal-periodictable" class="modal">
                 <div class="modal-content">
-                    <span class="close">x</span>
-                    <p>Periodic Table</p>
+                    <h2>Periodic Table</h2>
+                    <div id="periodictable">
+                        <div class="row">
+                            <div class="pt-element" title="Водород">
+                                <h3>1</h3>
+                                <h4>H</h4>
+                            </div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-element" id="Гелий">
+                                <h3>2</h3>
+                                <h4>He</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="pt-element" title="Литий">
+                                <h3>3</h3>
+                                <h4>Li</h4>
+                            </div>
+                            <div class="pt-element" title="Бериллий">
+                                <h3>4</h3>
+                                <h4>Be</h4>
+                            </div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-space"></div>
+                            <div class="pt-element" title="Бор">
+                                <h3>5</h3>
+                                <h4>B</h4>
+                            </div>
+                            <div class="pt-element" title="Углерод">
+                                <h3>5</h3>
+                                <h4>С</h4>
+                            </div>
+                            <div class="pt-element" title="Азот">
+                                <h3>7</h3>
+                                <h4>N</h4>
+                            </div>
+                            <div class="pt-element" title="Кислород">
+                                <h3>8</h3>
+                                <h4>O</h4>
+                            </div>
+                            <div class="pt-element" title="Фтор">
+                                <h3>9</h3>
+                                <h4>F</h4>
+                            </div>
+                            <div class="pt-element" title="Неон">
+                                <h3>10</h3>
+                                <h4>Ne</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="close">close</button>
                 </div>
             </div>
         </div>
         <script src="js/script.js">
+        </script>
+        <script src="js/modal.js">
         </script>
     </body>
 </html>
