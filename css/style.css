@@ -1,3 +1,5 @@
+
+
 *{
     margin: 0;
     padding: 0;
@@ -17,7 +19,7 @@ body{
 header{
     height: 50px;
     min-width: 100%;
-    background: #69D2E7;
+    background: #526CEE;
 }
 header .wrap{
     align-items: center;
@@ -50,16 +52,26 @@ header .wrap{
     line-height: 50px;
     width: 50px;
     height: 50px;
+
+
 }
 .element-tool{
+
     font-size: 16pt;
     font-family: 'Open Sans',sans-serif;
     text-align: center;
     cursor: pointer;
 }
 
-
-
+.toolbar-inner >div:active{
+    background: #EE5952;
+}
+/*
+.element-tool-selected{
+    background: #1acf78;
+    border-left: 2px solid red;
+}
+*/
 
 /*--------------------------------------------------------------------------*/
 /*periodic table*/

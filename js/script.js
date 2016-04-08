@@ -1,56 +1,28 @@
-/*modal
-http://www.w3schools.com/howto/howto_css_modals.asp
-*/
-var modal = document.getElementById('modal-periodictable');
-var showPerTable = document.getElementById("button-periodictable");
-
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-showPerTable.onclick = function() {
-    modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-};
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function() {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-};
-
 var atoms = document.getElementsByClassName('element-tool'); // from right panel
+var modal = document.getElementById('modal-periodictable');
 var periodictable = document.getElementsByClassName('pt-element'); // from periodictable modal
+
+var store = ""; // store selected element
+
 
 for (var i = 0; i < periodictable.length; i++) {
     periodictable[i].addEventListener('click', function(){
-        console.log(this.getElementsByTagName('h4')[0].innerText);
+        store = this.getElementsByTagName('h4')[0].innerText;
+        modal.style.display = "none";
+        console.log(store);
     });
 }
 
 for (var i = 0; i < atoms.length; i++) {
-    /*
-    atom[i].addEventListener('click', (function(i){
-        return function(){
-            var name = this.innerText;
-            console.log(name);
-        };
-    })(i), false);
-    */
-    atoms[i].addEventListener('click', function(){
-        console.log(this.innerText);
-    });
+    if (i != atoms.length-1) { // atoms.length-1  -  call periodic table
+        atoms[i].addEventListener('click', function(){
+            store = this.innerText;
+            //this.setAttribute('class', "element-tool-selected");
+            console.log(store);
+        });
+    }
+
 }
-
-
-
-
-
-
 
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
@@ -61,7 +33,7 @@ var interval = 80;
 
 var xPos = 0, yPos = 0;
 
-var elementsOnGrid = [];
+var field; // elements on grid
 var elements = [];
 
 function Element() {
@@ -82,9 +54,20 @@ function addNewElement(n, b, w, h, fill) {
     element.w = w;
     element.h = h;
     element.fill = fill; // for each groups elements
-
-    elements.push(element);
+    field[h][w] = element;
+    console.log(field[h][w]);
 }
+
+
+function matrixArray(columns, rows){ // matrix for grid
+    var arr = new Array(rows);
+    for(var i=0; i<arr.length; i++){
+        arr[i] = new Array(columns);
+    }
+    return arr;
+}
+
+
 
 function init() {
     canvas = document.getElementById('canvas');
@@ -94,11 +77,22 @@ function init() {
 
 }
 
+field = matrixArray(canvas.height/interval, canvas.height/interval);
+
+function initField (){
+    for (var i = 0; i < field.length; i++) {
+        for (var j = 0; j < field[i].length; j++) {
+            field[i][j] = new Element();
+        }
+    }
+}
+initField();
+
 canvas.addEventListener("click",click);
 function click(event){
     if (event.type == "click") {
         xPos = event.clientX;
-        yPos = event.clientY - 56;
+        yPos = event.clientY - 50;
 
         console.log(xPos,yPos);
         detectPosition(xPos, yPos);
@@ -106,6 +100,19 @@ function click(event){
     }
 
 }
+
+/*
+function dividedCanvasOnGrid(){
+    for (var i = interval; i < HEIGHT; i += interval) { //height
+        for (var j = interval; j < WIDTH; j += interval) {// width
+            el = {};
+            el.horiz = j;
+            el.vert = i;
+            elementsOnGrid.push(el);
+        }
+    }
+}
+*/
 
 
 function drawGrid(){
@@ -125,39 +132,34 @@ function drawGrid(){
     ctx.stroke();
 }
 
-
-function paintRect(x, y){
-
-    console.log(x * interval, y * interval);
-    ctx.beginPath();
-    ctx.fillRect(x*interval,y*interval, interval, interval);
-
-}
-
-function dividedCanvasOnGrid(){
-
-    for (var i = interval; i < HEIGHT; i += interval) { //height 600
-        for (var j = interval; j < WIDTH; j += interval) {// width 800
-            el = {};
-            el.horiz = j;
-            el.vert = i;
-
-            elementsOnGrid.push(el);
-        }
-    }
-}
-
 function detectPosition(x, y){
     var moduloX = Math.floor(x / interval);
     var moduloY = Math.floor(y / interval);
 
     console.log(moduloX);
     console.log(moduloY);
+    console.log(store);
 
-
-    paintRect(moduloX, moduloY);
+    paintSymbols(store, moduloX, moduloY);
+    //paintRect(moduloX, moduloY);
     //alert(gridElem.length);
+}
+
+function paintRect(x, y){
+    console.log(x * interval, y * interval);
+    ctx.beginPath();
+    ctx.fillRect(x*interval,y*interval, interval, interval);
+
+}
+
+function paintSymbols(symbol, x, y){
+    var marginTop = 15;
+    var marginLeft = 10;
+    ctx.textBaseline = "top";
+    ctx.font = "50px Arial";
+    ctx.fillText(symbol, x*interval+marginLeft,y*interval+marginTop);
+    addNewElement(symbol, 0, x, y, '#000000');
+    //store = "";
 }
 init();
 drawGrid();
-dividedCanvasOnGrid();
