@@ -1,8 +1,7 @@
 var atoms = document.getElementsByClassName('element-tool'); // from right panel
-var modal = document.getElementById('modal-periodictable');
 var periodictable = document.getElementsByClassName('pt-element'); // from periodictable modal
 
-var store = ""; // store selected element
+var store = ""; // store name of selected element
 
 
 for (var i = 0; i < periodictable.length; i++) {
@@ -35,6 +34,9 @@ var xPos = 0, yPos = 0;
 
 var field; // elements on grid
 var elements = [];
+
+// Padding and border style widths for mouse offsets
+var stylePaddingLeft, stylePaddingTop, styleBorderLeft, styleBorderTop;
 
 function Element() {
     this.name = ""; // name H,C ....
@@ -75,6 +77,10 @@ function init() {
     WIDTH = canvas.width;
     HEIGHT = canvas.height;
 
+
+
+
+
 }
 
 field = matrixArray(canvas.height/interval, canvas.height/interval);
@@ -91,9 +97,11 @@ initField();
 canvas.addEventListener("click",click);
 function click(event){
     if (event.type == "click") {
-        xPos = event.clientX;
-        yPos = event.clientY - 50;
+        xPos = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+        yPos = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 
+        xPos -= canvas.offsetLeft;
+        yPos -= canvas.offsetTop;
         console.log(xPos,yPos);
         detectPosition(xPos, yPos);
 
@@ -101,30 +109,17 @@ function click(event){
 
 }
 
-/*
-function dividedCanvasOnGrid(){
-    for (var i = interval; i < HEIGHT; i += interval) { //height
-        for (var j = interval; j < WIDTH; j += interval) {// width
-            el = {};
-            el.horiz = j;
-            el.vert = i;
-            elementsOnGrid.push(el);
-        }
-    }
-}
-*/
-
 
 function drawGrid(){
 
     ctx.beginPath();
 
-    for (var i = interval; i <= WIDTH; i += interval) {
+    for (var i = 0; i <= WIDTH; i += interval) {
         ctx.moveTo(i, 0);
         ctx.lineTo(i, HEIGHT);
     }
 
-    for (var j = interval; j <= HEIGHT; j += interval) {
+    for (var j = 0; j <= HEIGHT; j += interval) {
         ctx.moveTo(0, j);
         ctx.lineTo(WIDTH, j);
     }

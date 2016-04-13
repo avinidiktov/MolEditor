@@ -1,0 +1,18 @@
+header{
+    height: 50px;
+    width: 100%;
+    min-width: 960px;
+    background: #526CEE;
+}
+header .wrap{
+    align-items: center;
+}
+.wrap .logo,
+.wrap p{
+    display: inline-block;
+}
+.wrap p{
+    height: 50px;
+    line-height: 50px;
+    vertical-align: top;
+}

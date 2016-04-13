@@ -10,42 +10,59 @@ body{
     height: 100%;
 }
 body{
-        background-color: #ffffff;
+    background-color: #ffffff;
+
 }
 .container{
     min-height: 100%;
     min-width: 100%;
 }
-header{
-    height: 50px;
-    min-width: 100%;
-    background: #526CEE;
-}
-header .wrap{
-    align-items: center;
-}
-.wrap .logo,
-.wrap p{
-    display: inline-block;
-}
-.wrap p{
-    height: 50px;
-    line-height: 50px;
-    vertical-align: top;
-}
+
 .molpad{
     height: calc(100% - 50px);
     display: flex;
     flex-direction: row;
     align-items: stretch;
     align-content: stretch;
+    padding: 5px;
+    margin: 5px;
+
 }
 .toolbar{
 
 }
 
-.toolbar-inner{
+.questionbar{
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-end;
+    align-items: stretch;
+    flex: 1;
+}
+.task, .button{
+    text-align: center;
+}
 
+
+.task{
+    margin-bottom: 250px;
+
+}
+
+.button-panel{
+    min-width: 300px;
+}
+.button{
+    float: left;
+    height: 50px;
+    width: 50%;
+    min-width: 150px;
+    cursor: pointer;
+}
+
+.toolbar-inner{
+    height: 560px;
 }
 
 .toolbar-inner >div{
@@ -65,36 +82,5 @@ header .wrap{
 
 .toolbar-inner >div:active{
     background: #EE5952;
-}
-/*
-.element-tool-selected{
-    background: #1acf78;
-    border-left: 2px solid red;
-}
-*/
-
-/*--------------------------------------------------------------------------*/
-/*periodic table*/
-#periodictable{
-    display: flex;
-    flex-direction: column;;
-
-}
-
-.row{
-    display: flex;
-    flex-direction: row;
-
-}
-#periodictable >div{
-
-}
-.pt-element{
-    cursor: pointer;
-}
-
-.pt-space, .pt-element{
-    height: 40px;
-    width: 50px;
 
 }
