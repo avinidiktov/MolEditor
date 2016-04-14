@@ -69,17 +69,11 @@ function matrixArray(columns, rows){ // matrix for grid
     return arr;
 }
 
-
-
 function init() {
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
     WIDTH = canvas.width;
     HEIGHT = canvas.height;
-
-
-
-
 
 }
 
@@ -156,5 +150,6 @@ function paintSymbols(symbol, x, y){
     addNewElement(symbol, 0, x, y, '#000000');
     //store = "";
 }
+
 init();
 drawGrid();

@@ -8,17 +8,30 @@
         <link rel="stylesheet" href="css/head-style.css">
         <link rel="stylesheet" href="css/pt-style.css">
         <link rel="stylesheet" href="css/modal.css">
+        <link rel="stylesheet" href="css/menu-style.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     </head>
     <body>
         <div class="container">
             <header>
                 <div class="wrap">
-                    <div class="logo">
-                        <img src="img/icons/chemistry-icon.png" alt="icon" width="40" height="40"/>
+                    <div class="ms-menu-bar-wrapper">
+                        <ul class="ms-menu">
+                            <li class="ms-menu-trigger"><i class="fa fa-bars"></i></li>
+                        </ul>
                     </div>
-                    <p>My chemical editor</p>
                 </div>
             </header>
+            <div class="ms-menu-body-wrapper hide-menu">
+                <ul>
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">Explore</a></li>
+                  <li><a href="#">Users</a></li>
+                  <li><a href="#">Sign Out</a></li>
+                </ul>
+            </div>
+            <div class="modal-menu">
+            </div>
             <div class="molpad">
                 <div class="canvas-content">
                     <canvas id="canvas" width="560" height="560"></canvas>
@@ -155,6 +168,8 @@
         <script src="js/modal.js">
         </script>
         <script src="js/script.js">
+        </script>
+        <script src="js/menu.js">
         </script>
 
     </body>
