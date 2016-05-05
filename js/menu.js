@@ -1,13 +1,13 @@
 /**
   Side menu
 */
-menuWrapper = document.getElementsByClassName('ms-menu-body-wrapper')[0];
+var menuWrapper = document.getElementsByClassName('ms-menu-body-wrapper')[0];
 //menuWrapper = document.querySelector('.ms-menu-body-wrapper');
 
-msMenu = document.getElementsByClassName('ms-menu')[0];
+var msMenu = document.getElementsByClassName('ms-menu')[0];
 //msMenu = document.querySelector('.ms-menu');
 
-modalMenu = document.getElementsByClassName('modal-menu')[0];
+var modalMenu = document.getElementsByClassName('modal-menu')[0];
 //modalMenu = document.querySelector('.modal-menu');
 
 

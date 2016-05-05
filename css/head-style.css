@@ -1,7 +1,7 @@
 header{
     height: 60px;
     width: 100%;
-    min-width: 960px;
+    min-width: 1000px;
     background: #2196F3;
     box-shadow: 0 2px 5px rgba(0,0,0,0.26);
 }
@@ -30,7 +30,7 @@ header .wrap{
 }
 
 .ms-menu-trigger:hover {
-    color: #42A5F5;
+    color: #2196F3;
 }
 
 .fa-bars{

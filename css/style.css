@@ -21,10 +21,11 @@ ul, ol, li {
 .container{
     min-height: 100%;
     min-width: 100%;
+
 }
 
 .molpad{
-    height: calc(100% - 60px);
+    /*height: calc(100% - 60px);*/
     display: flex;
     flex-direction: row;
     align-items: stretch;
@@ -33,13 +34,18 @@ ul, ol, li {
     margin: 5px;
 
 }
-.toolbar{
+.canvas-content, .toolbar, .questionbar{
+    /*box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);*/
+}
 
+.toolbar{
+    margin-left: 5px;
 }
 
 .questionbar{
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0 0 8px 5px;
     display: flex;
     flex-direction: column;
     justify-content:flex-end;
@@ -53,15 +59,16 @@ ul, ol, li {
 
 .task{
     margin-bottom: 250px;
-
 }
 
 .button-panel{
-    min-width: 300px;
+    min-width: 350px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content:space-around;
     align-items: center;
+
+
 }
 .btn{
     /*
@@ -77,9 +84,6 @@ ul, ol, li {
     position: relative;
 
     width: 150px;
-
-    margin-left: auto;
-    margin-right: auto;
     padding: 0;
 
     overflow: hidden;
@@ -88,9 +92,7 @@ ul, ol, li {
     outline: none;
     border-radius: 2px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
-
-    background-color: #2196F3
-;
+    background-color: #2196F3;
     color: #ecf0f1;
 
     transition: background-color .3s;
@@ -108,6 +110,9 @@ btn:hover, .btn:focus {
 .btn span {
     display: block;
     padding: 12px 24px;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .btn:before {
@@ -146,7 +151,13 @@ btn:hover, .btn:focus {
 
 
 .toolbar-inner{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 560px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
 }
 
 .toolbar-inner >div{
@@ -158,8 +169,9 @@ btn:hover, .btn:focus {
 }
 .element-tool{
 
-    font-size: 16pt;
-    font-family: 'Open Sans',sans-serif;
+    font-family: 'Roboto Black', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
     text-align: center;
     cursor: pointer;
 }
