@@ -9,6 +9,9 @@ body{
 }
 body{
     background-color: #ffffff;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size: 14px;
+
 }
 
 ul, ol, li {
@@ -40,10 +43,10 @@ ul, ol, li {
 
 .toolbar{
     margin-left: 5px;
+    margin-right: 10px;
 }
 
 .questionbar{
-    margin-left: 10px;
     margin-right: 10px;
     padding: 0 0 8px 5px;
     display: flex;
@@ -107,6 +110,10 @@ btn:hover, .btn:focus {
     position: relative;
 }
 
+#questionbar{
+
+}
+
 .btn span {
     display: block;
     padding: 12px 24px;
@@ -149,9 +156,13 @@ btn:hover, .btn:focus {
     box-sizing: border-box;
 }
 
+.material-icons.md-36{
+     font-size: 36px;
+     text-align: center;
+     vertical-align: middle;
+ }
 
 .toolbar-inner{
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -160,23 +171,39 @@ btn:hover, .btn:focus {
 
 }
 
-.toolbar-inner >div{
+.toolbar-inner >div, .empty-tool{
     line-height: 50px;
     width: 50px;
     height: 50px;
-
-
 }
-.element-tool{
-
+.tool-button{
     font-family: 'Roboto Black', sans-serif;
     font-weight: 700;
     font-size: 28px;
     text-align: center;
     cursor: pointer;
 }
-
 .toolbar-inner >div:active{
     background: #2196F3;
 
+}
+
+
+
+
+#single-bond{
+    background-image: url('../img/bond/single.svg');
+}
+
+#double-bond{
+    background-image: url('../img/bond/double.svg');
+}
+
+#triple-bond{
+    background-image: url('../img/bond/triple.svg');
+}
+
+#single-bond, #double-bond, #triple-bond{
+    background-repeat: no-repeat;
+    background-position: center;
 }

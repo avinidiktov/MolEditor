@@ -30,7 +30,7 @@ var WIDTH;
 var HEIGHT;
 var interval = 80;
 
-var xPos = 0, yPos = 0;
+var positionOnGrid = 0;
 
 var field; // elements on grid
 var elements = [];
@@ -62,8 +62,8 @@ function addNewElement(n, b, w, h, fill) {
     element.w = w;
     element.h = h;
     element.fill = fill; // for each groups elements
-    field[h][w] = element;
-    console.log(field[h][w]);
+    field[w][h] = element;
+    console.log(field[w][h]);
 }
 
 function matrixArray(columns, rows) {
@@ -82,7 +82,7 @@ function init() {
 
 }
 
-field = matrixArray(canvas.height / interval, canvas.height / interval);
+field = matrixArray(canvas.width / interval, canvas.height / interval);
 
 function initField() {
     for (var i = 0; i < field.length; i++) {
@@ -93,20 +93,68 @@ function initField() {
 }
 
 
+
+function getMousePos(evt, canvas){
+    return {
+        x: evt.clientX + document.body.scrollLeft + document.documentElement.scrollLeft - canvas.offsetLeft,
+        y: evt.clientY + document.body.scrollTop + document.documentElement.scrollTop - canvas.offsetTop
+    };
+}
+
 canvas.addEventListener("click", click);
+
 function click(event) {
     if (event.type == "click") {
-        xPos = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-        yPos = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 
-        xPos -= canvas.offsetLeft;
-        yPos -= canvas.offsetTop;
-        console.log(xPos, yPos);
-        detectPosition(xPos, yPos);
+        var mousePos = getMousePos(event, canvas);
+        var positionOnGrid = detectPosition(mousePos);
 
+        var bonds = covalentBonds.get(store);
+        addNewElement(store, bonds, positionOnGrid.x, positionOnGrid.y, '#000000');
+        drawCanvas();
     }
 
 }
+
+canvas.addEventListener("mousemove",mousemove);
+
+function mousemove(event){
+    if (event.type == "mousemove") {
+
+        var mousePos = getMousePos(event, canvas);
+
+        positionOnGrid = detectPosition(mousePos);
+        drawCanvas();
+
+    }
+}
+
+function drawCirlce(centerX, centerY){
+    var radius = interval/10;
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+    ctx.lineWidth = 0;
+    ctx.fillStyle = '#0D47A1';
+    ctx.globalAlpha = 0.5;
+    ctx.fill();
+}
+
+function backLightCircles(pos){
+    console.log(pos.x);
+    console.log(pos.y);
+    if (field[pos.x][pos.y].name) {
+
+        var x = pos.x*interval;
+        var y= pos.y*interval;
+
+        drawCirlce(x+ padding, y+ interval/2);
+        drawCirlce(x+ interval/2, y+ padding);
+        drawCirlce(x+ interval - padding, y+ interval/2);
+        drawCirlce(x+ interval/2, y+ interval - padding);
+
+    }
+}
+
 
 function drawGrid() {
 
@@ -121,33 +169,33 @@ function drawGrid() {
         ctx.moveTo(0, j);
         ctx.lineTo(WIDTH, j);
     }
+    ctx.globalAlpha = 1;
     ctx.closePath();
     ctx.stroke();
 }
 
-function detectPosition(x, y) {
-    var moduloX = Math.floor(x / interval);
-    var moduloY = Math.floor(y / interval);
+function detectPosition(mousePos) {
+    var moduloX = Math.floor(mousePos.x / interval);
+    var moduloY = Math.floor(mousePos.y / interval);
 
-    console.log(moduloX);
-    console.log(moduloY);
-    console.log(store);
-
-
-    var bonds = covalentBonds.get(store);
-    addNewElement(store, bonds, moduloX, moduloY, '#000000');
-    drawCanvas();
-
+    return {
+        x: moduloX,
+        y: moduloY
+    };
 }
 
+
 function drawElements() {
-    for (var i = 0; i < 7; i++) {
-        for (var j = 0; j < 7; j++) {
-            var marginTop = 15;
-            var marginLeft = 10;
+    for (var i = 0; i < WIDTH/interval; i++) {
+        for (var j = 0; j < HEIGHT/interval; j++) {
+            var marginTop = 20;
+            var marginLeft = 20;
             ctx.textBaseline = "top";
-            ctx.font = "50px Arial";
+            ctx.font = "40px Arial";
+            ctx.fillStyle = "#000000";
             ctx.fillText(field[i][j].name, field[i][j].w * interval + marginLeft, field[i][j].h * interval + marginTop);
+            ctx.globalAlpha = 1;
+
         }
     }
 }
@@ -156,13 +204,9 @@ function drawCanvas(){
     ctx.clearRect(0,0, canvas.width, canvas.height); // clear canvas
     drawGrid();
     drawElements();
-    drawBonds();
+    backLightCircles(positionOnGrid);
+
 }
-
-
-
-
-
 
 function drawBonds(){
 
@@ -171,16 +215,14 @@ function drawBonds(){
 function validBonds(y, x, bonds){
 
 }
-
+/*
 function paintRect(x, y) {
     console.log(x * interval, y * interval);
     ctx.beginPath();
     ctx.fillRect(x * interval, y * interval, interval, interval);
 
 }
-
-
-
+*/
 
 
 init();

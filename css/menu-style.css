@@ -11,6 +11,7 @@
     top: 60px;
     width: 300px;
     height: calc(100% - 60px);
+    min-height: 640px;
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -56,4 +57,5 @@
     opacity: 0.4;
     width: 100%;
     min-width: 1000px;
+    min-height: 640px;
 }
