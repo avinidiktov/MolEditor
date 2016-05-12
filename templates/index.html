@@ -1,0 +1,95 @@
+{% extends "base.html"%}
+
+{% block title %}MolEditor{% endblock %}
+
+{% block molpad %}
+    <div class="molpad">
+        <div class="toolbar">
+            <div id="edit-tool">
+                <div class="toolbar-inner">
+                    <div id="single-bond" title="Single bond" class="tool-button">
+                    </div>
+                    <div id="double-bond" title="Double bond" class="tool-button">
+                    </div>
+                    <div id="triple-bond" title="Triple bond" class="tool-button">
+                    </div>
+                    <div id="clear" title="Clear all" class="tool-button">
+                        <i class="material-icons md-36">delete</i>
+                    </div>
+                    <div id="erase" title="Erase" class="tool-button">
+                        <i class="material-icons md-36">clear</i>
+                    </div>
+                    <div id="selected-item" title="selected item" class="tool-button">
+                        <i class="material-icons md-36">open_with</i>
+                    </div>
+                    <div id="undo" title="undo" class="tool-button">
+                        <i class="material-icons md-36">undo</i>
+                    </div>
+                    <div class="empty-tool">
+                    </div>
+                    <div class="empty-tool">
+                    </div>
+                    <div class="empty-tool">
+                    </div>
+                    <div id="save-canvas" title="export in .json" class="tool-button">
+                        <i class="material-icons md-36">file_download</i>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="canvas-content">
+            <canvas id="canvas" width="560" height="560"></canvas>
+        </div>
+        <div class="toolbar">
+            <div id="element-tools">
+                <div class="toolbar-inner">
+                    <div id="atom-c" title="Углерод" class="element-tool tool-button">
+                        C
+                    </div>
+                    <div id="atom-h" title="Водород" class="element-tool tool-button">
+                        H
+                    </div>
+                    <div id="atom-n" title="Азот" class="element-tool tool-button">
+                        N
+                    </div>
+                    <div id="atom-o" title="Кислород" class="element-tool tool-button">
+                        O
+                    </div>
+                    <div id="atom-p" title="Фосфор" class="element-tool tool-button">
+                        P
+                    </div>
+                    <div id="atom-s" title="Сера" class="element-tool tool-button">
+                        S
+                    </div>
+                    <div id="atom-f" title="Фтор" class="element-tool tool-button">
+                        F
+                    </div>
+                    <div id="atom-cl" title="Хлор" class="element-tool tool-button">
+                        Cl
+                    </div>
+                    <div id="atom-br" title="Бром" class="element-tool tool-button">
+                        Br
+                    </div>
+                    <div id="atom-i" title="Йод" class="element-tool tool-button">
+                        I
+                    </div>
+                    <div id="button-periodictable" title="Таблица Менделеева" class="element-tool tool-button">
+                        ...
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="questionbar">
+            <div class="task">
+                <h1>Постройте молекулу воды.</h1>
+            </div>
+            <div class="button-panel">
+                <button class="btn" type="button"><span>Назад</span></button>
+                <button class="btn" type="button"><span>Вперед</span></button>
+            </div>
+        </div>
+    </div>
+    {% include 'periodic-table.html' %}
+
+{% endblock %}

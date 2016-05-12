@@ -1,0 +1,25 @@
+/*--------------------------------------------------------------------------*/
+/*periodic table*/
+#periodictable{
+    display: flex;
+    flex-direction: column;;
+
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+
+}
+#periodictable >div{
+
+}
+.pt-element{
+    cursor: pointer;
+}
+
+.pt-space, .pt-element{
+    height: 40px;
+    width: 50px;
+
+}

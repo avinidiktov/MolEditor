@@ -1,0 +1,38 @@
+header{
+    height: 60px;
+    width: 100%;
+    min-width: 1000px;
+    background: #2196F3;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+}
+header .wrap{
+    height: 60px;
+    width: 100%;
+
+
+}
+
+.ms-menu-bar-wrapper {
+    width: 60px;
+    background: #0D47A1;
+    padding: 5px;
+    float: left;
+    position: relative;
+    z-index: 10;
+}
+
+.ms-menu-trigger {
+    height: 50px;
+    font-size: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: color 0.6s;
+}
+
+.ms-menu-trigger:hover {
+    color: #2196F3;
+}
+
+.fa-bars{
+    margin-top: 4px;
+}
