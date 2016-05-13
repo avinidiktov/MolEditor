@@ -30,7 +30,6 @@ for (var i = 0; i < periodictable.length; i++) {
         store = this.getElementsByTagName('h4')[0].innerText;
         modal.style.display = "none";
         state.name = "atom";
-        console.log(store);
     });
 }
 
@@ -40,7 +39,6 @@ for (var i = 0; i < atoms.length; i++) {
             store = this.innerText;
             state.name = "atom";
             //this.setAttribute('class', "element-tool-selected");
-            console.log(store);
         });
     }
 
@@ -182,7 +180,6 @@ canvas.addEventListener("wheel", onWheel);
 
 
 function zoomField(delta, newField){
-    console.log(newField.length);
     if (delta < 0) {
         for(var i = 0; i <field.length; i++){
             for(var j =0; j<field[i].length; j++){
@@ -301,7 +298,6 @@ function drawElements() {
             var marginLeft = 20;
             ctx.textBaseline = "top";
             ctx.font = fontSize + "px Arial";
-            console.log(ctx.font);
             ctx.fillStyle = "#000000";
             ctx.fillText(field[i][j].name, field[i][j].w * interval + marginLeft, field[i][j].h * interval + marginTop);
             ctx.globalAlpha = 1;

@@ -34,9 +34,6 @@ tripleBond.addEventListener('click', clickOnBond);
 function clickOnBond(){
     state.name = "bond";
     typeBond = this.title;
-
-
-
 }
 
 function addNewBond(x1, y1, x2, y2){
@@ -56,7 +53,6 @@ function addNewBond(x1, y1, x2, y2){
     }
 
 
-    console.log(Bonds);
 
 }
 
@@ -76,24 +72,54 @@ function detectedElements(x1, y1, x2, y2) {
 }
 
 function detectedCollisionBonds(bond){
-    for (var i = 0; i < Bonds.length; i++) {
-        if (Bonds[i].x1 === bond.x1 && Bonds[i].x2 === bond.x2 && Bonds[i].y1 === bond.y1 &&
-        Bonds[i].y2 === bond.y2) {
+    function collision(pointX1, pointX2, pointY1, pointY2) {
+        if (pointX1 === pointX2 && pointY1 === pointY2) {
+            return true;
+        }
+        return false;
+    }
 
+
+
+
+    for (var i = 0; i < Bonds.length; i++) {
+        if (collision(Bonds[i].x1, bond.x1, Bonds[i].y1, bond.y1) && collision(Bonds[i].x2, bond.x2,
+        Bonds[i].y2, bond.y2)) {
+            console.log("1");
+        }
+
+        if (collision(Bonds[i].x1, bond.x2, Bonds[i].y1, bond.y2)) {
+            console.log(2);
+        }
+
+
+
+        if ((collision(Bonds[i].x1, bond.x1, Bonds[i].y1, bond.y1) &&
+         collision(Bonds[i].x2, bond.x2, Bonds[i].y2, bond.y2)) ||
+         ( collision(Bonds[i].x1, bond.x2, Bonds[i].y1, bond.y2) &&
+         collision(Bonds[i].x2, bond.x1, Bonds[i].y2, bond.y1))  ) {
             Bonds[i] = bond;
             return true;
         }
+
     }
     return false;
 }
 
-var orientation =""; // horizontal or vertical (for course padding x or y )
+var orientation = true; // true - horizontal or false - vertical (for course padding x or y )
 
 
 function drawBonds(){
     if (Bonds.length !== 0) {
         for (var i = 0; i < Bonds.length; i++) {
-            drawSingleOrDoubleOrTripleBond(Bonds[i]);
+
+            var i1 = Bonds[i].x1, i2 = Bonds[i].x2, j1 = Bonds[i].y1, j2 = Bonds[i].y2;
+            if (field[i1][j1].name && field[i2][j2].name) {
+                drawSingleOrDoubleOrTripleBond(Bonds[i]);
+            }
+            else {
+                Bonds.splice(i,1);
+            }
         }
     }
 }
@@ -123,7 +149,7 @@ function drawSingleOrDoubleOrTripleBond(bond) {
 
         x2 = bond.x2 * interval + interval - padding;
         y2 = y1;
-        orientation = "vertical";
+        orientation = false;
         selectedTypeDrawLine();
         return;
     }
@@ -135,7 +161,7 @@ function drawSingleOrDoubleOrTripleBond(bond) {
         x2 = bond.x2 * interval + padding;
         y2 = y1;
 
-        orientation = "vertical";
+        orientation = false;
         selectedTypeDrawLine();
 
         return;
@@ -147,7 +173,7 @@ function drawSingleOrDoubleOrTripleBond(bond) {
 
         x2 = x1;
         y2 = bond.y2 * interval + interval - padding;
-        orientation = "horizontal";
+        orientation = true;
         selectedTypeDrawLine();
         return;
     }
@@ -158,7 +184,7 @@ function drawSingleOrDoubleOrTripleBond(bond) {
 
         x2 = x1;
         y2 = bond.y2 * interval + padding;
-        orientation = "horizontal";
+        orientation = true;
         selectedTypeDrawLine();
         return;
     }
@@ -180,7 +206,7 @@ function drawLine(x1, y1, x2, y2) {
 
 function drawSingleLine(x1, y1, x2, y2){
     drawLine(x1, y1, x2, y2);
-    console.log(typeBond);
+
 
 }
 
@@ -188,7 +214,7 @@ function drawSingleLine(x1, y1, x2, y2){
 
 function drawDoubleLine(x1, y1, x2, y2) {
     var gap = interval / 10;
-    if (orientation === "vertical") {
+    if (!orientation) {
         drawLine(x1, y1, x2, y2);
         drawLine(x1, y1 + gap, x2, y2 + gap);
     }
@@ -196,13 +222,13 @@ function drawDoubleLine(x1, y1, x2, y2) {
         drawLine(x1, y1, x2, y2);
         drawLine(x1 + gap, y1, x2 + gap, y2);
     }
-    console.log(typeBond);
+
 
 }
 
 function drawTripleLine(x1, y1, x2, y2) {
     var gap = interval / 10;
-    if (orientation === "vertical") {
+    if (!orientation) {
         drawLine(x1, y1 - gap, x2, y2 - gap);
         drawLine(x1, y1, x2, y2);
         drawLine(x1, y1 + gap, x2, y2 + gap);
@@ -216,5 +242,4 @@ function drawTripleLine(x1, y1, x2, y2) {
 
     }
 
-    console.log(typeBond);
 }

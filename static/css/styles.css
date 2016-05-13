@@ -155,11 +155,15 @@ btn:hover, .btn:focus {
 *, *:before, *:after {
     box-sizing: border-box;
 }
+.material-icons{
+    text-align: center;
+    vertical-align: middle;
+
+}
 
 .material-icons.md-36{
      font-size: 36px;
-     text-align: center;
-     vertical-align: middle;
+
  }
 
 .toolbar-inner{
