@@ -1,6 +1,7 @@
 var Bonds = [];
 var typeBond = "";
 
+
 function Bond (){
     this.x1 = 0;
     this.y1 = 0;
@@ -42,10 +43,8 @@ function addNewBond(x1, y1, x2, y2){
     bond.y1 = y1;
     bond.x2 = x2;
     bond.y2 = y2;
-
-    /****************************************/
     bond.type = typeBond; // test
-    /****************************************/
+
     if (!detectedCollisionBonds(bond) && detectedElements(x1, y1, x2, y2)) {
         //add detected covalent bonds
 
@@ -80,24 +79,12 @@ function detectedCollisionBonds(bond){
     }
 
 
-
-
     for (var i = 0; i < Bonds.length; i++) {
-        if (collision(Bonds[i].x1, bond.x1, Bonds[i].y1, bond.y1) && collision(Bonds[i].x2, bond.x2,
-        Bonds[i].y2, bond.y2)) {
-            console.log("1");
-        }
-
-        if (collision(Bonds[i].x1, bond.x2, Bonds[i].y1, bond.y2)) {
-            console.log(2);
-        }
-
-
-
         if ((collision(Bonds[i].x1, bond.x1, Bonds[i].y1, bond.y1) &&
          collision(Bonds[i].x2, bond.x2, Bonds[i].y2, bond.y2)) ||
          ( collision(Bonds[i].x1, bond.x2, Bonds[i].y1, bond.y2) &&
          collision(Bonds[i].x2, bond.x1, Bonds[i].y2, bond.y1))  ) {
+
             Bonds[i] = bond;
             return true;
         }
