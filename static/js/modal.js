@@ -21,4 +21,8 @@ window.onclick = function() {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+    if (event.target == modalForm) {
+        modalForm.style.display = "none";
+    }
+
 };

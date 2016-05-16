@@ -1,6 +1,6 @@
 #coding: utf-8
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 app.debug = True
@@ -16,6 +16,12 @@ def SMILES_tutorial():
 @app.route('/about')
 def about():
     return render_template('about.html');
+
+@app.route('/json', methods=['POST', 'GET'])
+def upload():
+    print (request.files['file'])
+    return "post"
+
 
 
 if __name__ == '__main__':

@@ -82,7 +82,7 @@ ul, ol, li {
     /*
     margin-left: 8px;
     float: left;
-    height: 50px;
+
     width: calc(50% - 8px);
     min-width: 150px;
     cursor: pointer;
@@ -92,6 +92,7 @@ ul, ol, li {
     position: relative;
 
     width: 150px;
+    height: 40px;
     padding: 0;
 
     overflow: hidden;
@@ -129,11 +130,9 @@ btn:hover, .btn:focus {
 
 .btn:before {
     content: "";
-
     position: absolute;
     top: 50%;
     left: 50%;
-
     display: block;
     width: 0;
     padding-top: 0;
@@ -152,14 +151,10 @@ btn:hover, .btn:focus {
 .btn:active:before {
     width: 120%;
     padding-top: 120%;
-
     transition: width .2s ease-out, padding-top .2s ease-out;
 }
 
-/* Styles, not important */
-*, *:before, *:after {
-    box-sizing: border-box;
-}
+
 .material-icons{
     text-align: center;
     vertical-align: middle;
