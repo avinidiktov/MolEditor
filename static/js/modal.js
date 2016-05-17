@@ -24,5 +24,5 @@ window.onclick = function() {
     if (event.target == modalForm) {
         modalForm.style.display = "none";
     }
-
+    
 };

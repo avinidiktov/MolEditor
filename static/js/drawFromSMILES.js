@@ -1,4 +1,3 @@
-
 var s = "[O]";
 
 function parseSMILES(formula){
@@ -6,20 +5,15 @@ function parseSMILES(formula){
         return "";
     }
     else {
-        
+
     }
 
-
-
 }
-
-
 
 function drawFromSMILES(formula){
 
 
 
 }
-
 
 drawFromSMILES(s);

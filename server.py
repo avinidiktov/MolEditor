@@ -1,9 +1,15 @@
 #coding: utf-8
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask
+from flask import render_template, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.debug = True
+
+
+
+
 
 @app.route('/')
 def index():

@@ -38,6 +38,44 @@ function clickOnBond(){
 }
 
 function addNewBond(x1, y1, x2, y2){
+    function detectedElements(x1, y1, x2, y2) {
+        function detectedNeigbor(x1, y1, x2, y2) {
+            if ((x1 === x2+1 && y1 === y2) || (x1 === x2 && y1 === y2 +1) || (x1 === x2-1 && y1 === y2) ||
+             (x1 === x2 && y1 === y2 -1)) { // left top right bottom
+                return true;
+            }
+            return false;
+        }
+
+        if (field[x1][y1].name && field[x2][y2].name && detectedNeigbor(x1, y1, x2, y2)) {
+            return true;
+        }
+        return false;
+    }
+
+    function detectedCollisionBonds(bond){
+        function collision(pointX1, pointX2, pointY1, pointY2) {
+            if (pointX1 === pointX2 && pointY1 === pointY2) {
+                return true;
+            }
+            return false;
+
+        }
+
+        for (var i = 0; i < Bonds.length; i++) {
+            if ((collision(Bonds[i].x1, bond.x1, Bonds[i].y1, bond.y1) &&
+             collision(Bonds[i].x2, bond.x2, Bonds[i].y2, bond.y2)) ||
+             ( collision(Bonds[i].x1, bond.x2, Bonds[i].y1, bond.y2) &&
+             collision(Bonds[i].x2, bond.x1, Bonds[i].y2, bond.y1))  ) {
+
+                Bonds[i] = bond;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     var bond = new Bond();
     bond.x1 = x1;
     bond.y1 = y1;
@@ -47,50 +85,9 @@ function addNewBond(x1, y1, x2, y2){
 
     if (!detectedCollisionBonds(bond) && detectedElements(x1, y1, x2, y2)) {
         //add detected covalent bonds
-
         Bonds.push(bond);
     }
 
-
-
-}
-
-function detectedElements(x1, y1, x2, y2) {
-    function detectedNeigbor(x1, y1, x2, y2) {
-        if ((x1 === x2+1 && y1 === y2) || (x1 === x2 && y1 === y2 +1) || (x1 === x2-1 && y1 === y2) ||
-         (x1 === x2 && y1 === y2 -1)) { // left top right bottom
-            return true;
-        }
-        return false;
-    }
-
-    if (field[x1][y1].name && field[x2][y2].name && detectedNeigbor(x1, y1, x2, y2)) {
-        return true;
-    }
-    return false;
-}
-
-function detectedCollisionBonds(bond){
-    function collision(pointX1, pointX2, pointY1, pointY2) {
-        if (pointX1 === pointX2 && pointY1 === pointY2) {
-            return true;
-        }
-        return false;
-    }
-
-
-    for (var i = 0; i < Bonds.length; i++) {
-        if ((collision(Bonds[i].x1, bond.x1, Bonds[i].y1, bond.y1) &&
-         collision(Bonds[i].x2, bond.x2, Bonds[i].y2, bond.y2)) ||
-         ( collision(Bonds[i].x1, bond.x2, Bonds[i].y1, bond.y2) &&
-         collision(Bonds[i].x2, bond.x1, Bonds[i].y2, bond.y1))  ) {
-
-            Bonds[i] = bond;
-            return true;
-        }
-
-    }
-    return false;
 }
 
 var orientation = true; // true - horizontal or false - vertical (for course padding x or y )

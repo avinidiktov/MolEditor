@@ -1,19 +1,21 @@
 /* clear all */
 var clear = document.getElementById('clear');
 
-clear.addEventListener('click', clearAll);
-
-function clearAll() {
+clear.addEventListener('click', function () {
     initField();
     Bonds.splice(0, Bonds.length);
     drawCanvas();
 
-}
+});
+
+
 
 /*Erase
 selected item
 undo
 redo*/
+
+
 
 var json;
 function JSONObject() {
@@ -22,21 +24,22 @@ function JSONObject() {
     this.i = 0;
     this.fs = 0;
 }
-function addNewJSONObject(f, b, i, fs){
-    var object = new JSONObject();
-    object.f = f;
-    object.b = b;
-    object.i = i;
-    object.fs = fs;
-    return object;
-}
+
+
+
 /*Export in json*/
 
 var save = document.getElementById('file-export');
 
-save.addEventListener('click', saveJson);
-
-function saveJson() {
+save.addEventListener('click', function () {
+    function addNewJSONObject(f, b, i, fs){
+        var object = new JSONObject();
+        object.f = f;
+        object.b = b;
+        object.i = i;
+        object.fs = fs;
+        return object;
+    }
     json = JSON.stringify(addNewJSONObject(field, Bonds, interval, fontSize), null, '\t');
     var blob = new Blob([json], {type: "application/json"});
     var url  = URL.createObjectURL(blob);
@@ -49,7 +52,9 @@ function saveJson() {
     a.click();
     window.URL.revokeObjectURL(url); //Call this method when you've finished using a object URL
 
-}
+});
+
+
 
 /*Import from json*/
 var modalForm = document.getElementById('modal-upload-form');
