@@ -81,15 +81,17 @@
                 </div>
             </div>
         </div>
+
         <div class="questionbar">
             <div class="task">
-                <h1>Постройте молекулу воды.</h1>
+                <h1>{{ title_task }}</h1>
             </div>
             <div class="button-panel">
-                <button class="btn" type="button"><span>Назад</span></button>
-                <button class="btn" type="button"><span>Вперед</span></button>
+                <button id="back-button" class="btn" type="button"><span>Назад</span></button>
+                <button id="next-button" class="btn" type="button"><span>Вперед</span></button>
             </div>
         </div>
+
     </div>
     {% include 'periodic-table.html' %}
     {% include 'upload-form.html' %}

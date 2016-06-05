@@ -1,5 +1,5 @@
 var Bonds = [];
-var typeBond = "";
+var typeBond = 0;
 
 
 function Bond (){
@@ -7,10 +7,9 @@ function Bond (){
     this.y1 = 0;
     this.x2 = 0;
     this.y2 = 0;
-    this.type = ""; // single, double or triple
+    this.type = 0; // single, double or triple
     this.backlightPadding = 5;
-    //this.Element1 = new Element();
-    //this.Element2 = new Element();
+
 }
 
 
@@ -34,7 +33,20 @@ tripleBond.addEventListener('click', clickOnBond);
 
 function clickOnBond(){
     state.name = "bond";
-    typeBond = this.title;
+    switch (this.title) {
+        case "Single bond":
+            typeBond = 1;
+            break;
+        case "Double bond":
+            typeBond = 2;
+            break;
+        case "Triple bond":
+            typeBond = 3;
+            break;
+        default:
+            break;
+    }
+
 }
 
 function addNewBond(x1, y1, x2, y2){
@@ -84,8 +96,14 @@ function addNewBond(x1, y1, x2, y2){
     bond.type = typeBond; // test
 
     if (!detectedCollisionBonds(bond) && detectedElements(x1, y1, x2, y2)) {
-        //add detected covalent bonds
-        Bonds.push(bond);
+        if (field[x1][y1].bonds >= typeBond && field[x2][y2].bonds >= typeBond) {
+            field[x1][y1].bonds -= typeBond;
+            field[x2][y2].bonds -= typeBond;
+            Bonds.push(bond);
+        }
+        else {
+            alert("incorrect bond");
+        }
     }
 
 }
@@ -111,13 +129,13 @@ function drawBonds(){
 function drawSingleOrDoubleOrTripleBond(bond) {
     function selectedTypeDrawLine() {
         switch (bond.type) {
-            case "Single bond":
+            case 1:
                 drawSingleLine(this.x1, this.y1, this.x2, this.y2);
                 break;
-            case "Double bond":
+            case 2:
                 drawDoubleLine(this.x1, this.y1, this.x2, this.y2);
                 break;
-            case "Triple bond":
+            case 3:
                 drawTripleLine(this.x1, this.y1, this.x2, this.y2);
                 break;
             default:

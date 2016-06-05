@@ -167,9 +167,14 @@ canvas.addEventListener("mousemove", function (event) {
 
         var mousePos = getMousePos(event, canvas);
 
-
         positionOnGrid = detectPosition(mousePos);
-        drawCanvas();
+
+        //var w = positionOnGrid.x;
+        //var h = positionOnGrid.y;
+        //if (field[w][h].name) {
+            drawCanvas();
+        //}
+
 
     }
 });
