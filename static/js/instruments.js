@@ -5,6 +5,7 @@ clear.addEventListener('click', function () {
     initField();
     Bonds.splice(0, Bonds.length);
     drawCanvas();
+    counterElements = 0;
 
 });
 

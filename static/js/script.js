@@ -61,6 +61,8 @@ var fontSize = 40;
 var field; // elements on grid
 var elements = [];
 
+var counterElements = 0;
+
 // it's bonds for test, "Br" and "I" is not fully
 var covalentBonds = new Map([["H",1],["F",1],["Li",1],["Na",1],["K",1],
                     ["O",2],["Ca",2],["Mg",2],
@@ -100,17 +102,15 @@ function init() {
 
 }
 
-
+function matrixArray(columns, rows) {
+    var arr = new Array(rows);
+    for (var i = 0; i < arr.length; i++) {
+        arr[i] = new Array(columns);
+    }
+    return arr;
+}
 
 function initField() {
-    function matrixArray(columns, rows) {
-        var arr = new Array(rows);
-        for (var i = 0; i < arr.length; i++) {
-            arr[i] = new Array(columns);
-        }
-        return arr;
-    }
-
     field = matrixArray(canvas.width / interval, canvas.height / interval);
     for (var i = 0; i < field.length; i++) {
         for (var j = 0; j < field[i].length; j++) {
@@ -138,6 +138,7 @@ canvas.addEventListener("click", function (event) {
             case 'atom':
                 var bonds = covalentBonds.get(store);
                 addNewElement(store, bonds, positionOnGrid.x, positionOnGrid.y, '#000000');
+                counterElements++;
                 drawCanvas();
                 break;
             case 'bond':

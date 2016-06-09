@@ -10,6 +10,8 @@ function Bond (){
     this.type = 0; // single, double or triple
     this.backlightPadding = 5;
 
+    this.isChecked = false;
+
 }
 
 
@@ -94,6 +96,10 @@ function addNewBond(x1, y1, x2, y2){
     bond.x2 = x2;
     bond.y2 = y2;
     bond.type = typeBond; // test
+
+    if (field[x1][y1].name === "H" || field[x2][y2].name === "H") {
+        bond.isChecked = true;
+    }
 
     if (!detectedCollisionBonds(bond) && detectedElements(x1, y1, x2, y2)) {
         if (field[x1][y1].bonds >= typeBond && field[x2][y2].bonds >= typeBond) {

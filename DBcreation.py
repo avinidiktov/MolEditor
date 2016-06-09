@@ -2,8 +2,8 @@ from app import db
 db.create_all()
 
 from app import Task
-Water = Task('Нарисуйте молекулу воды (H20)', '[H][O][H]')
-SulfuricAcid = Task('Нарисуйте серную кислоту (H2SO4)', '[H][O][S](=O)(=O)[O][H]')
+Water = Task('Постройте молекулу воды', '[O]')
+SulfuricAcid = Task('Постройте молекулу серной кислоты', '[O][S]=[O]=[O][O]') # TODO [O][S](=O)(=O)[O]
 
 db.session.add(Water)
 db.session.add(SulfuricAcid)

@@ -25,10 +25,35 @@ def SMILES_tutorial():
 def about():
     return render_template('about.html');
 
-@app.route('/json', methods=['POST', 'GET'])
-def upload():
-    print (request.files['file'])
-    return "post"
+index = 0
+
+@app.route('/tasks/<task_id>')
+def replace_task(task_id):
+    if int(task_id) >=0 and int(task_id) <= len(tasks)-1:
+        global index
+        index = int(task_id)
+
+    print(index)
+    return jsonify(task = tasks[index].title)
+
+@app.route('/checked/<result>')
+def find_Elements(result):
+
+    global index
+    print(index)
+    print (tasks[index].result+"  "+ result)
+    if tasks[index].result == result:
+        return jsonify(isFinded = "true")
+    else:
+        return jsonify(isFinded = "false")
+
+
+
+
+
+
+
+
 
 
 if __name__ == '__main__':

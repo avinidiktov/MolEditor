@@ -60,12 +60,12 @@ ul, ol, li {
     align-items: stretch;
     flex: 1;
 }
-.task, .button{
+#task, .button{
     text-align: center;
 }
 
 
-.task{
+#task{
     margin-bottom: 250px;
 }
 
@@ -118,6 +118,12 @@ btn:hover, .btn:focus {
 
 #questionbar{
 
+}
+
+#check-answer{
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
 }
 
 .btn span {
@@ -187,12 +193,10 @@ btn:hover, .btn:focus {
     text-align: center;
     cursor: pointer;
 }
-.toolbar-inner >div:active{
+.toolbar-inner >div:active, #check-answer>i:active{
     background: #2196F3;
 
 }
-
-
 
 
 #single-bond{
